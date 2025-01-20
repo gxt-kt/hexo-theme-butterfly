@@ -1,8 +1,11 @@
 if theme.aside.card_author.enable
   .card-widget.card-info.text-center
     .avatar-img
-      img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-    .author-info-name= config.author
+      // 这个用来控制电脑的
+      a(href=url_for(theme.avatar.link))
+        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.flink)}'` alt="avatar" style="cursor: pointer;")
+    .author-info-name
+      a(href=url_for(theme.aside.card_author.link))= config.author
     .author-info-description!= theme.aside.card_author.description || config.description
 
     .site-data

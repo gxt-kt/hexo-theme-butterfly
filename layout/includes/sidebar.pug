@@ -2,8 +2,10 @@ if theme.menu
   #sidebar
     #menu-mask
     #sidebar-menus
+      // 这个用来控制手机的侧边栏
       .avatar-img.text-center
-        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.flink)}'` alt="avatar")
+        a(href=url_for(theme.avatar.link))
+          img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.flink)}'` alt="avatar" style="cursor: pointer;")
       .site-data.text-center
         a(href=`${url_for(config.archive_dir)}/`)
           .headline= _p('aside.articles')
