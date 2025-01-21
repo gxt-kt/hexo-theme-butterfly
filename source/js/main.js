@@ -401,6 +401,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const isChatBtn = typeof chatBtn !== 'undefined'
     const isShowPercent = GLOBAL_CONFIG.percent.rightside
 
+    // 初始化时显示 rightside
+    $rightside.classList.add('rightside-show');
+
     // 檢查文檔高度是否小於視窗高度
     const checkDocumentHeight = () => {
       if (document.body.scrollHeight <= innerHeight) {
@@ -448,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTop === 0) {
           $header.classList.remove('nav-fixed', 'nav-visible')
         }
-        $rightside.classList.remove('rightside-show')
+        // $rightside.classList.remove('rightside-show')
       }
 
       isShowPercent && rightsideScrollPercent(currentTop)
