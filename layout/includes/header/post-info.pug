@@ -25,17 +25,7 @@
             i.fa-fw.post-meta-icon(class=date_icon)
             span.post-meta-label= date_title
             time(datetime=date_xml(page[date_type]) title=date_title + ' ' + full_date(page[date_type]))= date(page[date_type], config.date_format)
-      if theme.post_meta.post.categories && page.categories.data.length > 0
-        span.post-meta-categories
-          if theme.post_meta.post.date_type
-            span.post-meta-separator |
-          each item, index in page.categories.data
-            i.fas.fa-inbox.fa-fw.post-meta-icon
-            a(href=url_for(item.path)).post-meta-categories #[=item.name]
-            if index < page.categories.data.length - 1
-              i.fas.fa-angle-right.post-meta-separator
 
-    .meta-secondline
       - let postWordcount = theme.wordcount.enable && (theme.wordcount.post_wordcount || theme.wordcount.min2read)
       if postWordcount
         span.post-meta-separator |
@@ -50,6 +40,34 @@
             i.far.fa-clock.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.min2read') + ':'
             span= min2read(page.content, {cn: 350, en: 160}) + _p('post.min2read_unit')
+
+    // 把tags加过来，样式与categories 一致
+    .meta-secondline
+      if (page.tags.length > 0 && theme.post_meta.post.tags)
+        span.post-meta-tags
+          each item, index in page.tags.data
+            a(href=url_for(item.path)).post-meta-categories
+              i.fas.fa-tag.fa-fw
+              span= item.name
+            if index < page.tags.data.length - 1
+              |  &nbsp;
+
+    // 设置categories
+    .meta-thirdline
+      if theme.post_meta.post.categories && page.categories.data.length > 0
+        span.post-meta-categories
+          // i.fas.fa-inbox.fa-fw.post-meta-icon
+          i.fas.fa-inbox
+          each item, index in page.categories.data
+            // i.fas.fa-inbox.fa-fw.post-meta-icon
+            // a(href=url_for(item.path)).post-meta-categories #[=item.name]
+            a(href=url_for(item.path)).post-meta-categories
+              | &nbsp;
+              span= item.name
+              | &nbsp;
+            if index < page.categories.data.length - 1
+              |/
+
 
       //- for pv and count
       mixin pvBlock(parent_id, parent_class, parent_title)

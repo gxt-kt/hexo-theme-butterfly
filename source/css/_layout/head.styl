@@ -247,16 +247,17 @@
     color: var(--light-grey)
     font-size: 95%
 
-    +minWidth768()
-      > .meta-secondline
-        > span:first-child
-          display: none
+    // +minWidth768()
+    //   > .meta-secondline
+    //     > span:first-child
+    //       display: none
 
     +maxWidth768()
       font-size: 90%
 
       > .meta-firstline,
       > .meta-secondline
+      > .meta-thirdline
         display: inline
 
     .post-meta
@@ -274,7 +275,7 @@
 
     a
       color: var(--light-grey)
-      transition: all .3s ease-out
+      transition: all .0s ease-out
 
       &:hover
         color: $text-hover
