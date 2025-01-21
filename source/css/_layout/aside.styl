@@ -16,7 +16,7 @@
     position: relative
     overflow: hidden
     margin-bottom: 20px
-    padding: 20px 24px
+    padding: 10px 24px
 
     if hexo-config('aside.mobile') == false
       +maxWidth768()
@@ -36,10 +36,10 @@
         margin-top: -.42em
 
     .site-data
-      margin: 14px 0 4px
+      margin: -5px 0 0px
 
     .card-info-social-icons
-      margin: 6px 0 -6px
+      margin: -10px 0 -5px
 
       .social-icon
         margin: 0 10px
@@ -85,7 +85,7 @@
     a
       display: inline-block
       padding: 0 4px
-      line-height: 1.8
+      line-height: 1.0
 
       &:hover
         color: $text-hover !important
@@ -291,8 +291,8 @@
 
       .toc-link
         display: block
-        margin: 4px 0
-        padding: 1px 8px
+        margin: 0px 0
+        padding: 0px 8px
         color: var(--toc-link-color)
         transition: all .2s ease-in-out
         addBorderRadius()
@@ -301,8 +301,20 @@
           color: $theme-color
 
         &.active
-          background: $theme-toc-color
-          color: $toc-active-color
+          position: relative; // 确保伪元素相对于这个元素定位
+          color: $theme-toc-color;
+          &::before {
+            content: ''; // 伪元素必须要有 content 属性
+            position: absolute;
+            left: -3px; // 调整这个值来控制框与左边界的距离
+            top: 50%; // 垂直居中
+            transform: translateY(-50%); // 垂直居中
+            width: 5px; // 框的宽度
+            height: 60%; // 框的高度，可以根据需要调整
+            background-color: $theme-toc-color; // 框的背景颜色
+            border-radius: 2px; // 圆角大小
+          }
+
 
   .sticky_layout:only-child
     > :first-child
