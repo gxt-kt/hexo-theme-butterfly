@@ -7,7 +7,8 @@
   display: flex
   flex: 1 auto
   margin: 0 auto
-  padding: 40px 15px
+  // 顶栏和page之间的间距
+  padding: 0px 15px
   max-width: 1200px
   width: 100%
 
@@ -23,7 +24,8 @@
   & > div:first-child:not(.nc)
     @extend .cardHover
     align-self: flex-start
-    padding: 50px 40px
+    // 设置page页边距
+    padding: 0px 30px 30px 30px
 
     +maxWidth768()
       padding: 36px 14px
