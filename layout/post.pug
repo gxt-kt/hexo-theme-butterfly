@@ -39,8 +39,10 @@ block content
 
     // 显示相关文章
     if theme.related_post && theme.related_post.enable
-      .custom-hr
-      != related_posts(page,site.posts)
+      - const relatedPosts = related_posts(page, site.posts)
+      if relatedPosts
+        .custom-hr
+        != relatedPosts
 
     // 显示评论
     if page.comments !== false && theme.comments.use
