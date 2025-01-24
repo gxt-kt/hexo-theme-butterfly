@@ -189,6 +189,8 @@ beautify()
   .post-meta-categories,
   .post-meta-tags
     display: inline-block
+    transition: none !important;
+    -webkit-transition: none !important;
     a
       &:hover
         background: var(--btn-bg) !important
@@ -196,8 +198,6 @@ beautify()
         color: var(--btn-color) !important
         border-radius: 7px
         text-decoration: none !important // 确保悬停时没有下划线
-        transition: color 0.3s ease !important
-        transition: border-radius 0s ease !important
 
     .post-share
       display: inline-block
