@@ -292,26 +292,26 @@
       .toc-link
         display: block
         margin: 0px 0
-        padding: 0px 8px
+        padding: 1px 0px
         color: var(--toc-link-color)
-        transition: all .2s ease-in-out
+        transition: all .0s ease-in-out
         addBorderRadius()
 
         &:hover
-          color: $theme-color
+          color: $theme-toc-color
 
         &.active
           position: relative; // 确保伪元素相对于这个元素定位
-          color: $theme-toc-color;
+          color: $theme-color;
           &::before {
             content: ''; // 伪元素必须要有 content 属性
             position: absolute;
-            left: -3px; // 调整这个值来控制框与左边界的距离
+            left: -13px; // 调整这个值来控制框与左边界的距离
             top: 50%; // 垂直居中
             transform: translateY(-50%); // 垂直居中
             width: 5px; // 框的宽度
-            height: 60%; // 框的高度，可以根据需要调整
-            background-color: $theme-toc-color; // 框的背景颜色
+            height: 70%; // 框的高度，可以根据需要调整
+            background-color: $theme-color; // 框的背景颜色
             border-radius: 2px; // 圆角大小
           }
 
