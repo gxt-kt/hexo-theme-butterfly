@@ -480,6 +480,22 @@ document.addEventListener('DOMContentLoaded', () => {
       $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
       isExpand = $cardToc.classList.contains('is-expand')
 
+      // 去除目录中的 # 前缀
+      $tocLink.forEach(link => {
+        const textSpan = link.querySelector('.toc-text');
+        if (textSpan) {
+          // console.log("before text", textSpan.textContent);
+          // 处理文本
+          let text = textSpan.textContent
+            .replace(/\n/g, ' ') // 将换行符替换为空格
+            .trim() // 清理首尾空白
+            .replace(/^#+/, '') // 移除开头的#号
+            .trim(); // 再次清理可能残留的空白
+          textSpan.textContent = text;
+          // console.log("after text", textSpan.textContent);
+        }
+      });
+
       // toc元素點擊
       const tocItemClickFn = e => {
         const target = e.target.closest('.toc-link')
