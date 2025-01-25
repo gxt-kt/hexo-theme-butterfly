@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 處理 hexo-blog-encrypt 事件
-      $cardToc.style.display = 'block'
+      // $cardToc.style.display = 'block'
     }
 
     // find head position & add active class
@@ -585,6 +585,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btf.addEventListenerPjax(window, 'scroll', tocScrollFn, { passive: true })
   }
+
+  const handleEncryption = () => {
+    const isEncrypted = window.isEncrypted;
+    const $cardTocLayout = document.getElementById('card-toc');
+    if (!$cardTocLayout) return;
+    $cardToc = $cardTocLayout.querySelector('.toc-content')
+    const isCurrentlyDecrypted = () => {
+      // 通过检查 hbe-button 是否显示来判断解密状态
+      const $hbeButton = document.querySelector('.hbe-button');
+      return $hbeButton !== null;
+    };
+    const updateTocVisibility = (isDecrypted) => {
+      if (isDecrypted) {
+        // console.log("文章已解密，显示目录");
+        $cardToc.style.display = 'block';
+      } else {
+        // console.log("文章未解密，隐藏目录");
+        $cardToc.style.display = 'none';
+      }
+    };
+    if (isEncrypted) {
+      // console.log("文章启用了加密功能");
+      // 检查当前解密状态
+      if (isCurrentlyDecrypted()) {
+        // console.log("检测到 hbe-button，文章处于解密状态");
+        updateTocVisibility(true);
+      } else {
+        // console.log("未检测到 hbe-button，文章处于加密状态");
+        updateTocVisibility(false);
+        // 监听解密事件
+        const handleDecryptEvent = () => {
+          // console.log("接收到 hexo-blog-decrypt 事件，文章已解密");
+          updateTocVisibility(true);
+          window.removeEventListener('hexo-blog-decrypt', handleDecryptEvent);
+        };
+        window.addEventListener('hexo-blog-decrypt', handleDecryptEvent);
+      }
+    } else {
+      // console.log("文章未启用加密功能，直接显示目录");
+      updateTocVisibility(true);
+    }
+  };
+  handleEncryption();
+
 
   const handleThemeChange = mode => {
     const globalFn = window.globalFn || {}

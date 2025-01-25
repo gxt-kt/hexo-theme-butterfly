@@ -12,3 +12,7 @@
     .toc-content.toc-div-class(class=tocExpandClass style="display:none")!=toc(page.origin, {list_number: tocNumber})
   else
     .toc-content(class=tocExpandClass)!=toc(page.content, {list_number: tocNumber})
+
+script.
+  // 将 page.encrypt 的值传递给前端
+  window.isEncrypted = #{page.encrypt || false};
