@@ -245,6 +245,7 @@ window.addEventListener('load', () => {
 
   const input = document.querySelector('#local-search-input input')
   const statsItem = document.getElementById('local-search-stats-wrap')
+  statsItem.style.color = "var(--search-input-color)";
   const $loadingStatus = document.getElementById('loading-status')
   const isXml = !path.endsWith('json')
 
